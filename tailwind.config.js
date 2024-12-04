@@ -24,15 +24,16 @@ export default {
         dmsan: ["DM Sans", "san-serif"],
         montserrat: ["Montserrat","san-serif"]
       },
-      animation: {
-        'spin-reverse': 'spin 1s linear infinite reverse',
-        'bounce': 'bounce 1s infinite',
-      },
       keyframes: {
-        bounce: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-5px)' }
+        treeWind: {
+          '0%, 100%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+          '25%': { transform: 'translate(-50%, -50%) rotate(-2deg)' },
+          '50%': { transform: 'translate(-50%, -50%) rotate(2deg)' },
+          '75%': { transform: 'translate(-50%, -50%) rotate(-1deg)' }
         }
+      },
+      animation: {
+        'tree-wind': 'treeWind 0.5s ease-in-out infinite'
       }
 
     },
