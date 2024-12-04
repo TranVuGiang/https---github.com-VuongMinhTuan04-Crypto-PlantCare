@@ -12,8 +12,10 @@ export default class GameScene extends Phaser.Scene {
     } else {
       this.load.image("background", "/assets/images/background.png");
     }
-    
+
     this.load.image("tree", "/assets/images/tree.png");
+    this.load.image("treelevel", "/assets/images/treelevel.png");
+    this.load.image("whitecircle", "/assets/images/white-circle.png");
   }
 
   create() {
@@ -32,10 +34,46 @@ export default class GameScene extends Phaser.Scene {
       .setScale(0.6);
 
     this.tree.setInteractive();
-    this.tree.on('pointerdown', () => {
+    this.tree.on("pointerdown", () => {
       console.log("Cây được click");
     });
 
+    // this.whitecircle = this.add
+    // .image(width / 8, height / 7 ,"whitecircle")
+    // .setOrigin(0.5, 1)
+    // .setScale(0.08)
+
+    // Đặt hình treelevel lên trên nền
+    this.treelevel = this.add
+      .image(width / 8, height / 8, "treelevel")
+      .setOrigin(0.5, 1)
+      .setScale(0.2)
+      .setDepth(1); // Đảm bảo hình treelevel nằm trên nền
+    // Tạo hình nền tròn
+    const graphics = this.add.graphics();
+    graphics.fillStyle(0xf0f0f0, 1); // Màu nền nhạt với độ trong suốt
+    graphics.fillCircle(
+      this.treelevel.x,
+      this.treelevel.y - this.treelevel.height / 9,
+      this.treelevel.width / 9 // Bán kính hình tròn
+    );
+
+    // Layer the image on top of the background
+    this.treelevel.setDepth(1);
+
+    // Tạo ô trắng
+    this.whiteBox = this.add.graphics();
+    this.whiteBox.fillStyle(0xffffff, 1); // Màu trắng với độ trong suốt
+    this.whiteBox.fillRoundedRect(
+      width / 8 - 50, // Điều chỉnh vị trí x
+      height / 8 - 50, // Điều chỉnh vị trí y
+      80, // Chiều rộng
+      30, // Chiều cao
+      10 // Bán kính góc bo tròn
+    );
+
+    // Đặt nó ở độ sâu dưới treelevel
+    this.whiteBox.setDepth(0);
     // Căn chỉnh khi thay đổi kích thước màn hình
     this.scale.on("resize", this.resizeBackground, this);
     this.resizeBackground(this.scale.gameSize);
