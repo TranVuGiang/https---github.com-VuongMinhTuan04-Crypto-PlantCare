@@ -1,3 +1,4 @@
+
 import LayoutGame from '@/DefaultLayouts/LayoutGame';
 import LayoutWebsite from '@/DefaultLayouts/LayoutWebsite';
 import GameHome from '@/pages/gameUI/GameHome';
@@ -9,6 +10,7 @@ import Mint from '@/pages/login4';
 import ActivityView from '@/pages/activities';
 import ReferAndEarn from '@/pages/ReferAndEarn';
 import InviteBonus from '@/pages/invitebonus';
+import ShopPage from "@/pages/gameUI/GameShopping";
 const publicRoutes = [
   { path: '/', component: Home, layout: LayoutWebsite },
   { path: '/game-playing', component: GameHome, layout: LayoutGame },
@@ -19,7 +21,7 @@ const publicRoutes = [
   { path: '/game-activities', component: ActivityView, layout: LayoutGame },
   { path: '/game-referandearn', component: ReferAndEarn, layout: LayoutGame },
   { path: '/game-invitebonus', component: InviteBonus, layout: LayoutGame },
-];
+  {path: "/game-shopping", component: ShopPage,  layout: LayoutGame},
 
 const privateRoutes = [];
 
