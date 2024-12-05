@@ -1,4 +1,4 @@
-import PhoneFrame from "@/components/phoneFrame";
+import PhoneFrame from '@/components/phoneFrame';
 
 function LayoutGame({ children }) {
   return (
