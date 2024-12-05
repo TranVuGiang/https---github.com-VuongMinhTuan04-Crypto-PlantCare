@@ -1,7 +1,9 @@
 import ItemShopModal from "@/components/gameComponents/buynfts";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function GameHome() {
+  const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState(null);
   const [basketClicked, setBasketClicked] = useState(false);
   const [shovelClicked, setShovelClicked] = useState(false);
@@ -39,7 +41,7 @@ function GameHome() {
   ];
 
   const handleBasketClick = () => {
-    setBasketClicked((prev) => !prev);
+    navigate("/game-shopping");
   };
 
   const handleCloseModal = () => {
@@ -51,11 +53,33 @@ function GameHome() {
     // Add your shovel action logic here
   };
 
-  const handleEventOptionClick = (id) => {
-    setActiveButton(id);
-    setTimeout(() => setActiveButton(null), 200);
-    // Add your event option action logic here
-  };
+  // // const handleEventOptionClick = (id) => {
+  // //   setActiveButton(id);
+  // //   setTimeout(() => setActiveButton(null), 200);
+  // //   // Add your event option action logic here
+  // // };
+  // const handleEventOptionClick = (id) => {
+  //   setActiveButton(id);
+  //   setTimeout(() => setActiveButton(null), 200);
+
+  //   // Điều hướng đến trang tương ứng với event
+  //   switch (id) {
+  //     case 1:
+  //       navigate("/game-playing/event1");
+  //       break;
+  //     case 2:
+  //       navigate("/game-playing/event2");
+  //       break;
+  //     case 3:
+  //       navigate("/game-playing/event3");
+  //       break;
+  //     case 4:
+  //       navigate("/game-playing/event4");
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   return (
     <div className="relative w-full h-full">
@@ -125,6 +149,14 @@ function GameHome() {
           </div>
         </button>
         {/* ItemShopModal */}
+        <div className="absolute top-48 right-[70px] ">
+          <ItemShopModal
+            show={shovelClicked}
+            className={`absolute top-1/2 left-12 transform translate-y-full ${
+              basketClicked ? "block" : "hidden"
+            }`}
+          />
+        </div>
       </div>
 
       {/* Shovel Button */}
@@ -139,7 +171,7 @@ function GameHome() {
             <img
               src="/assets/images/Ellipse-47.png"
               alt="shovel-background"
-              className="w-full h-full object-cover"
+              className={`w-full h-full object-cover`}
             />
           </div>
           <div className="absolute w-6 h-6 z-10">
@@ -150,38 +182,9 @@ function GameHome() {
             />
           </div>
         </button>
-        <div className="absolute top-48 right-[70px] ">
-          <ItemShopModal
-            show={shovelClicked}
-            className={`absolute top-1/2 left-12 transform translate-y-full ${
-              basketClicked ? "block" : "hidden"
-            }`}
-          />
-        </div>
+       
       </div>
-      {/* Event Options List */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
-        {gameHomeOptions.map((option) => (
-          <button
-            key={option.id}
-            onClick={() => handleEventOptionClick(option.id)}
-            className={`w-12 h-12 relative flex items-center justify-center
-              transform transition-transform duration-200
-              ${activeButton === option.id ? "scale-90" : "scale-100"}`}
-          >
-            <img
-              src={option.backgroundImage}
-              alt={`event-background-${option.id}`}
-              className="absolute w-full h-full object-cover"
-            />
-            <img
-              src={option.iconImage}
-              alt={`event-icon-${option.id}`}
-              className="absolute w-6 h-6 z-10 object-contain"
-            />
-          </button>
-        ))}
-      </div>
+     
     </div>
   );
 }
