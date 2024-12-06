@@ -1,3 +1,4 @@
+
 import LayoutGame from "@/DefaultLayouts/LayoutGame";
 import LayoutWebsite from "@/DefaultLayouts/LayoutWebsite";
 import GameScreen from "@/pages/gameUI";
@@ -22,6 +23,7 @@ const publicRoutes = [
   { path: "/game-shopping", component: ShopPage, layout: LayoutGame },
   { path: "/wallet", component: Wallet, layout: LayoutGame },
 ];
+
 const privateRoutes = [];
 
 export { privateRoutes, publicRoutes };
