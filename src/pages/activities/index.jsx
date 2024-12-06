@@ -1,6 +1,7 @@
-import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 const UserActivityView = () => {
+  const navigate = useNavigate()
   const activities = [
     {
       id: 1,
@@ -21,16 +22,16 @@ const UserActivityView = () => {
   ];
 
   return (
-    <div className="bg-green-200 p-4 rounded-md shadow-md h-full">
-      <div className="flex justify-between items-center mb-4">
+    <div className="bg-background-green p-4 rounded-md shadow-md h-full pt-3">
+      <div className="flex justify-between items-center mb-4 px-4">
         <h2 className="text-lg font-bold mt-3 text-black">Activities</h2>
-        <button className="bg-white px-4 py-2 mt-4 rounded-md hover:bg-green-600 transition-colors duration-200 text-green-900">
+        <button onClick={() => navigate('/game-playing/activities/referandearn')} className="bg-white px-4 py-2 mt-4 rounded-md hover:bg-green-600 transition-colors duration-200 text-green-900">
           All Activities
         </button>
       </div>
 
       {/* Hiển thị dữ liệu */}
-      <div className="space-y-2">
+      <div className="space-y-2 px-4">
         {activities.map((activity) => (
           <div
             key={activity.id}
@@ -64,22 +65,6 @@ const UserActivityView = () => {
         </button>
       </div>
 
-      {/* Buttons with images */}
-      <div className="flex justify-center mt-6 space-x-4">
-        {[
-          'assets/images/image 14.png',
-          'assets/images/Rectangle 135.png',
-          'assets/images/Rectangle 136.png',
-          'assets/images/Rectangle 137.png',
-        ].map((imgSrc, index) => (
-          <button
-            key={index}
-            className="bg-green-500 w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition-colors"
-          >
-            <img src={imgSrc} alt={`Button ${index + 1}`} className="w-6 h-6 object-contain" />
-          </button>
-        ))}
-      </div>
     </div>
   );
 };

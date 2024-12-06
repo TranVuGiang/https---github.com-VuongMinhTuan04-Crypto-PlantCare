@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        'full': '0 0 15px rgba(0, 0, 0, 1.2)', // Shadow đều xung quanh
+      },
       colors: {
         space: {
           100: "#042959",
@@ -15,6 +18,9 @@ export default {
           800: "#2d3e96",
           900: "#f2f2f5",
         },
+      },
+      scrollbarWidth: {
+        thin: 'thin',
       },
       fontFamily: {
         dmsan: ["DM Sans", "san-serif"],
@@ -40,8 +46,12 @@ export default {
     backgroundImage: {
       "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       "background-game": "url('/assets/images/background-game-mobile.png')",
-      "background-shop": "url('/assets/images/background-shop.png')"
+      "background-shop": "url('/assets/images/background-shop.png')",
+      "background-green": "url('/assets/images/background-green.png')",
+      "background-congrats": "url('/assets/images/Rectangle 70.png')",
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 };

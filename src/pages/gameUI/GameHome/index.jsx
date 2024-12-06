@@ -1,86 +1,22 @@
 import ItemShopModal from "@/components/gameComponents/buynfts";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function GameHome() {
   const navigate = useNavigate();
-  const [activeButton, setActiveButton] = useState(null);
-  const [basketClicked, setBasketClicked] = useState(false);
   const [shovelClicked, setShovelClicked] = useState(false);
-  const [isWindBlowing, setIsWindBlowing] = useState(false);
 
-  useEffect(() => {
-    // Tạo hiệu ứng gió random
-    const windInterval = setInterval(() => {
-      setIsWindBlowing(Math.random() > 0.5);
-    }, 3000); // Thay đổi trạng thái gió mỗi 3 giây
-
-    return () => clearInterval(windInterval);
-  }, []);
-  const gameHomeOptions = [
-    {
-      id: 1,
-      backgroundImage: "/assets/images/image.png",
-      iconImage: "/assets/images/image 14.png",
-    },
-    {
-      id: 2,
-      backgroundImage: "/assets/images/image.png",
-      iconImage: "/assets/images/Rectangle 135.png",
-    },
-    {
-      id: 3,
-      backgroundImage: "/assets/images/image.png",
-      iconImage: "/assets/images/Rectangle 136.png",
-    },
-    {
-      id: 4,
-      backgroundImage: "/assets/images/image.png",
-      iconImage: "/assets/images/Rectangle 137.png",
-    },
-  ];
 
   const handleBasketClick = () => {
     navigate("/game-shopping");
   };
 
-  const handleCloseModal = () => {
-    setBasketClicked(false);
-  };
 
   const handleShovelClick = () => {
     setShovelClicked((prev) => !prev);
-    // Add your shovel action logic here
   };
 
-  // // const handleEventOptionClick = (id) => {
-  // //   setActiveButton(id);
-  // //   setTimeout(() => setActiveButton(null), 200);
-  // //   // Add your event option action logic here
-  // // };
-  // const handleEventOptionClick = (id) => {
-  //   setActiveButton(id);
-  //   setTimeout(() => setActiveButton(null), 200);
-
-  //   // Điều hướng đến trang tương ứng với event
-  //   switch (id) {
-  //     case 1:
-  //       navigate("/game-playing/event1");
-  //       break;
-  //     case 2:
-  //       navigate("/game-playing/event2");
-  //       break;
-  //     case 3:
-  //       navigate("/game-playing/event3");
-  //       break;
-  //     case 4:
-  //       navigate("/game-playing/event4");
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
-
+ 
   return (
     <div className="relative w-full h-full">
       {/* Level Image */}
@@ -131,7 +67,7 @@ function GameHome() {
           onClick={handleBasketClick}
           className={`absolute top-28 right-4 w-12 h-12 flex items-center justify-center 
           transform transition-transform duration-200 
-          ${basketClicked ? "scale-90" : "scale-100"}`}
+         `}
         >
           <div className="absolute w-full h-full">
             <img
@@ -149,14 +85,7 @@ function GameHome() {
           </div>
         </button>
         {/* ItemShopModal */}
-        <div className="absolute top-48 right-[70px] ">
-          <ItemShopModal
-            show={shovelClicked}
-            className={`absolute top-1/2 left-12 transform translate-y-full ${
-              basketClicked ? "block" : "hidden"
-            }`}
-          />
-        </div>
+        
       </div>
 
       {/* Shovel Button */}
@@ -182,7 +111,14 @@ function GameHome() {
             />
           </div>
         </button>
-       
+        <div className="absolute top-48 right-[70px] ">
+          <ItemShopModal
+            show={shovelClicked}
+            className={`absolute top-1/2 left-12 transform translate-y-full ${
+              shovelClicked ? "block" : "hidden"
+            }`}
+          />
+        </div>
       </div>
      
     </div>

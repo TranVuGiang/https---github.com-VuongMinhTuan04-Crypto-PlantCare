@@ -1,7 +1,9 @@
 import { useState } from "react";
+import Notification from "../notifications";
 
 const ItemShopModal = ({ show, onClose }) => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [showNotification, setShowNotification] = useState(false);
 
   const itemData = [
     {
@@ -94,8 +96,16 @@ const ItemShopModal = ({ show, onClose }) => {
     setSelectedItem(item);
   };
 
+  const handleUseClick = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 1000); // Thông báo hiển thị trong 3 giây
+  };
+
   return (
-    <div className={`inset-0 flex  ${show ? "block" : "hidden"}`}>
+    <div className={`inset-0 flex ${show ? "block" : "hidden"}`}>
+      {showNotification && <Notification />}
       <div className="bg-green-400 border-2 border-black rounded-lg shadow-lg p-1 w-full max-w-[250px] text-black">
         <div className="grid grid-cols-4">
           {itemData.map((item) => (
@@ -103,7 +113,7 @@ const ItemShopModal = ({ show, onClose }) => {
               key={item.id}
               onClick={() => handleItemClick(item)}
               className={`rounded-lg p-2 transition-colors ${
-                selectedItem?.id === item.id ? "" : ""
+                selectedItem?.id === item.id ? "bg-green-200" : ""
               }`}
             >
               <div className="relative w-12 h-12">
@@ -121,7 +131,9 @@ const ItemShopModal = ({ show, onClose }) => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="absolute text-white font-bold bg-green-500 rounded-full w-5 h-5 -top-2 -right-0 text-center text-[12px]">x3</span>
+                <span className="absolute text-white font-bold bg-green-500 rounded-full w-5 h-5 -top-2 -right-0 text-center text-[12px]">
+                  x3
+                </span>
               </div>
             </button>
           ))}
@@ -132,7 +144,10 @@ const ItemShopModal = ({ show, onClose }) => {
             <p className="text-gray-600 text-sm">
               This is a description of the {selectedItem.name}.
             </p>
-            <button className="bg-green-500 hover:bg-green-600 text-white w-full font-bold py-2 px-4 rounded mt-4">
+            <button
+              onClick={handleUseClick}
+              className="bg-green-500 hover:bg-green-600 text-white w-full font-bold py-2 px-4 rounded mt-4"
+            >
               USE
             </button>
           </div>

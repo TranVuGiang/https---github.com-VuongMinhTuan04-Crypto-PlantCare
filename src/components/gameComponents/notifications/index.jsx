@@ -1,17 +1,18 @@
-
 const Notification = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-pink-400 to-pink-600">
-      <div className="flex flex-col items-center space-y-4">
-        <div className="flex space-x-2">
-          <div className="w-8 h-8 bg-yellow-400 rounded-full"></div>
-          <div className="w-8 h-8 bg-yellow-400 rounded-full"></div>
-          <div className="w-8 h-8 bg-yellow-400 rounded-full"></div>
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-background-green h-96 rounded-lg shadow-lg text-center relative">
+        <img src="/assets/images/star.png" alt="" className="size-80" />
+
+        <div className="absolute top-[105px] left-[147px]">
+          <span className="text-[40px] font-bold">2</span>
         </div>
-        <div className="text-4xl font-bold text-white">LEVEL UP!</div>
-        <button className="px-4 py-2 text-white bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
-          OK
-        </button>
+        <div className="absolute bottom-20 left-14">
+          <div className="text-4xl font-bold text-pink-600">LEVEL UP!</div>
+          <button className="mt-4 px-4 py-2 text-white bg-pink-500 rounded-full w-52 hover:bg-pink-600 transition">
+            OK
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
-import React from 'react';
+import { useNavigate } from "react-router-dom";
 
-const FoundWallet = ({ onNext }) => {
+const FoundWallet = () => {
+  const navigate = useNavigate()
   const icons = [
     {
       id: 1,
@@ -15,22 +16,22 @@ const FoundWallet = ({ onNext }) => {
   ];
 
   return (
-    <div className="flex flex-col items-center bg-green-200 h-full justify-center">
+    <div className="flex flex-col items-center bg-background-green h-full justify-center">
       <h1 className="text-3xl font-bold text-gray-800 mb-10">Found the wallet</h1>
-      <h4 className="text-xl font-bold text-gray-800 mb-7 text-center">
+      <h4 className="text-xl font-bold text-gray-800 mx-5 text-center">
         To get started, you’ll need some SOL on BASE
       </h4>
-      <p className="text-gray-600 text-sm text-center mb-5">
+      <p className="text-gray-600 text-sm text-center m-5">
         Click Deposit in your wallet or use the Deposit SOL function to transfer SOL from PLANTCARE.
         Make sure to have at least 0.015 SOL in your balance to proceed.
       </p>
 
       {/* Amount Input with SQL Icon */}
-      <div className="w-80 bg-gray-100 p-1 rounded-lg mb-4 flex items-center">
+      <div className="w-80 bg-gray-100 p-2 rounded-full mb-4 flex items-center">
         <input
           type="text"
           value="1000.0"
-          className="w-full text-sm text-gray-700 focus:outline-none bg-transparent"
+          className="w-full text-sm text-gray-700 focus:outline-none px-2 bg-transparent"
         />
         <img
           src={icons[1].iconImage}
@@ -53,8 +54,8 @@ const FoundWallet = ({ onNext }) => {
 
       {/* Deposit Button */}
       <button
-        onClick={onNext}
-        className="bg-green-600 text-white font-bold py-2 px-4 rounded-full w-72"
+        onClick={() => (navigate('/game-login/solana/deposite'))}
+        className="bg-green-600 text-white font-bold py-2 px-4 rounded-full w-80"
       >
         DEPOSIT
       </button>
